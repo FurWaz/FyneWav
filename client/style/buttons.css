@@ -1,0 +1,73 @@
+button {
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    font-family: "Roboto bold";
+    font-size: 14px;
+    border: solid 2px transparent;
+    color: var(--color-white-light);
+    background-color: transparent;
+    padding: 4px 10px;
+    white-space: nowrap;
+    width: min-content;
+    height: min-content;
+    cursor: pointer;
+    transition: filter var(--animation-quick) var(--animation-type),
+                color var(--animation-quick) var(--animation-type),
+                background-color var(--animation-quick) var(--animation-type),
+                border-color var(--animation-quick) var(--animation-type);
+} button:hover {
+    filter: brightness(0.9);
+}
+
+button.contain {
+    color: var(--color-white-light);
+    background-color: var(--color-primary-light);
+}
+
+button.outline {
+    color: var(--color-primary-light);
+    border: solid 2px var(--color-primary-light);
+    background-color: transparent;
+} button.outline:hover {
+    
+}
+
+button.text {
+    color: var(--color-primary-light);
+    background-color: transparent;
+} button.text:hover {
+    
+}
+
+button.contain-red {background-color: var(--color-red-light);}
+button.contain-green {background-color: var(--color-green-light);}
+button.contain-blue {background-color: var(--color-blue-light);}
+button.contain-purple {background-color: var(--color-purple-light);}
+button.contain-orange {background-color: var(--color-orange-light);}
+button.contain-yellow {background-color: var(--color-yellow-light);}
+button.contain-cyan {background-color: var(--color-cyan-light);}
+button.contain-black {background-color: var(--color-black-light);}
+button.contain-white {background-color: var(--color-white-light);}
+button.contain-grey {background-color: var(--color-grey-light);}
+
+button.outline-red {color: var(--color-red-light); border-color: var(--color-red-light);}
+button.outline-green {color: var(--color-green-light); border-color: var(--color-green-light);}
+button.outline-blue {color: var(--color-blue-light); border-color: var(--color-blue-light);}
+button.outline-purple {color: var(--color-purple-light); border-color: var(--color-purple-light);}
+button.outline-orange {color: var(--color-orange-light); border-color: var(--color-orange-light);}
+button.outline-yellow {color: var(--color-yellow-light); border-color: var(--color-yellow-light);}
+button.outline-cyan {color: var(--color-cyan-light); border-color: var(--color-cyan-light);}
+button.outline-black {color: var(--color-black-light); border-color: var(--color-black-light);}
+button.outline-white {color: var(--color-white-light); border-color: var(--color-white-light);}
+button.outline-grey {color: var(--color-grey-light); border-color: var(--color-grey-light);}
+
+button.text-red {color: var(--color-red-light);}
+button.text-green {color: var(--color-green-light);}
+button.text-blue {color: var(--color-blue-light);}
+button.text-purple {color: var(--color-purple-light);}
+button.text-orange {color: var(--color-orange-light);}
+button.text-yellow {color: var(--color-yellow-light);}
+button.text-cyan {color: var(--color-cyan-light);}
+button.text-black {color: var(--color-black-light);}
+button.text-white {color: var(--color-white-light);}
+button.text-grey {color: var(--color-grey-light);}

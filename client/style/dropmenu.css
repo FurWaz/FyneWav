@@ -1,0 +1,27 @@
+div.drop-menu {
+    border-radius: var(--border-radius);
+    border: solid 1px var(--color-white-light);
+    background-color: var(--color-background);
+    max-height: 0px;
+    height: fit-content;
+    width: fit-content;
+    position: fixed;
+    left: 40px; right: 40px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height var(--animation-medium) var(--animation-type),
+                opacity var(--animation-medium) var(--animation-type),
+                left var(--animation-quick) var(--animation-type),
+                right var(--animation-quick) var(--animation-type);
+}
+
+p.drop-option {
+    color: var(--color-white-light);
+    cursor: pointer;
+    margin: 0px;
+    padding: 4px 10px;
+} p.drop-option:hover {
+    background-color: var(--color-black-dark);
+    color: var(--color-primary-light);
+}

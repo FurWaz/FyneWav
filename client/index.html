@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FyneWav</title>
+    <script src="./script.js" defer></script>
+    <script src="./modules/dropmenu.js" defer></script>
+    <script src="./modules/fileExplorer.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style/menubar.css">
+    <link rel="stylesheet" href="./style/buttons.css">
+    <link rel="stylesheet" href="./style/fileExplorer.css">
+    <link rel="stylesheet" href="./style/dropmenu.css">
+</head>
+<body>
+    <div class="nosize" id="nosize">
+
+    </div>
+    <div id="app">
+        <div id="menubar">
+            <img src="../resources/icon.svg" alt="icon" class="menu-icon">
+            <div class="align-y"> <button class="outline" id="file-btn">FILE</button> </div>
+            <span class="separator"></span>
+            <div class="align-y"> <button class="outline" id="options-btn">OPTIONS</button> </div>
+            <span class="separator"></span>
+            <div class="align-y"> <button class="outline" id="about-btn">ABOUT</button> </div>
+        </div>
+        <div id="content">
+            <div id="file-explorer">
+                
+            </div>
+            <div id="file-expand" class="expand-v"></div>
+            <div id="creation-zone">
+                <div id="arranger">
+
+                </div>
+                <div id="arranger-expand" class="expand-h"></div>
+                <div id="tweak-zone">
+                    <div id="racks">
+
+                    </div>
+                    <div id="racks-expand" class="expand-v"></div>
+                    <div id="channels">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

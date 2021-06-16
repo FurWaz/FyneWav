@@ -1,0 +1,5 @@
+node-gyp clean
+node-gyp configure
+node-gyp build
+./node_modules/.bin/electron-rebuild
+npm start

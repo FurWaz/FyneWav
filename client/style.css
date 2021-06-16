@@ -1,0 +1,165 @@
+@font-face {
+    font-family: "Roboto regular";
+    src: url("../resources/fonts/Roboto/Roboto-Regular.ttf");
+}
+@font-face {
+    font-family: "Roboto regular italic";
+    src: url("../resources/fonts/Roboto/Roboto-Regular.ttf");
+}
+@font-face {
+    font-family: "Roboto bold";
+    src: url("../resources/fonts/Roboto/Roboto-Bold.ttf");
+}
+@font-face {
+    font-family: "Roboto bold italic";
+    src: url("../resources/fonts/Roboto/Roboto-Bold-Italic.ttf");
+}
+@font-face {
+    font-family: "Roboto thin";
+    src: url("../resources/fonts/Roboto/Roboto-Thin.ttf");
+}
+@font-face {
+    font-family: "Roboto thin italic";
+    src: url("../resources/fonts/Roboto/Roboto-Thin-Italic.ttf");
+}
+
+:root {
+    --color-black-dark: #2c3e50;
+    --color-black-light: #34495e;
+    --color-grey-dark: #7f8c8d;
+    --color-grey-light: #95a5a6;
+    --color-white-dark: #bdc3c7;
+    --color-white-light: #ecf0f1;
+    --color-purple-dark: #8e44ad;
+    --color-purple-light: #9b59b6;
+    --color-red-dark: #c0392b;
+    --color-red-light: #e74c3c;
+    --color-green-dark: #27ae60;
+    --color-green-light: #2ecc71;
+    --color-cyan-dark: #16a085;
+    --color-cyan-light: #1abc9c;
+    --color-blue-dark: #2980b9;
+    --color-blue-light: #3498db;
+    --color-orange-dark: #d35400;
+    --color-orange-light: #e67e22;
+    --color-yellow-dark: #f39c12;
+    --color-yellow-light: #f1c40f;
+
+    --color-background: var(--color-black-light);
+    --color-primary-light: var(--color-blue-light);
+    --color-primary-dark: var(--color-blue-dark);
+    --color-foreground: var(--color-white-light);
+
+    --shadow: 0px 2px 4px #0003;
+    --border-radius: 4px;
+
+    --animation-medium: 128ms;
+    --animation-slow: 512ms;
+    --animation-quick: 64ms;
+    --animation-type: ease;
+}
+
+body {
+    background-color: var(--color-background);
+    font-family: "Roboto regular";
+    font-size: 14px;
+    color: var(--color-foreground);
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0px;
+    padding: 0px;
+}
+
+h1 {
+    font-size: 28px;
+    color: var(--color-white-light);
+    font-family: "Roboto bold";
+}
+
+h2 {
+    font-size: 20px;
+    color: var(--color-white-light);
+    font-family: "Roboto bold";
+}
+
+span.separator {
+    width: 10px;
+    height: 10px;
+}
+
+.nosize {
+    margin: 0px; padding: 0px;
+    width: 0px; height: 0px;
+    position: fixed;
+    top: 0px; left: 0px;
+}
+
+div#app {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-black-dark);
+    display: flex;
+    flex-direction: column;
+}
+
+div#content {
+    width: 100%;
+    height: 100%;
+    max-height: calc( 100% - 45px );
+    display: inline-flex;
+}
+
+div#creation-zone {
+    flex: 1 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+div#arranger {
+    width: 100%;
+    height: 60%;
+    background-color: var(--color-background);
+}
+
+div#tweak-zone {
+    flex: 1 1 auto;
+    width: 100%;
+    display: inline-flex;
+}
+
+div#racks {
+    height: 100%;
+    width: 40%;
+    background-color: var(--color-background);
+}
+
+div#channels {
+    height: 100%;
+    flex: 1 0 auto;
+    background-color: var(--color-background);
+}
+
+div.expand-v {
+    height: 100%;
+    width: 4px;
+    background-color: var(--color-black-dark);
+    cursor: ew-resize;
+}
+div.expand-h {
+    width: 100%;
+    height: 4px;
+    background-color: var(--color-black-dark);
+    cursor: ns-resize;
+}
+
+.align-y {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}

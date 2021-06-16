@@ -1,0 +1,50 @@
+div#file-explorer {
+    width: 15%;
+    margin: 0px; padding: 0px;
+    background-color: var(--color-background);
+    overflow-y: scroll;
+    user-select: none;
+}
+
+div.diskElement {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+} div.diskElement > p:hover {
+    background-color: var(--color-black-dark);
+}
+
+p.diskElement {
+    padding: 0px; margin: 0px;
+    color: var(--color-white-light);
+    font-size: 14px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+div.folder {
+    width: 100%;
+    height: min-content;
+    max-height: 0px;
+    margin-left: 4px;
+    padding-left: 4px;
+    opacity: 0;
+    border-left: solid 4px var(--color-black-dark);
+    overflow-y: scroll;
+    transition: max-height var(--animation-medium) var(--animation-type),
+                opacity var(--animation-medium) var(--animation-type);
+}
+
+p.folder {
+    padding: 0px; margin: 0px;
+    color: var(--color-white-light);
+    font-size: 14px;
+    white-space: nowrap;
+} 
+
+p.file {
+    padding: 0px; margin: 0px;
+    color: var(--color-blue-light);
+    font-size: 14px;
+    white-space: nowrap;
+}
