@@ -2,8 +2,12 @@ const { BrowserWindow, app, ipcMain } = require("electron");
 const { ConfigLoader, Version } = require("./config");
 const fs = require("fs");
 
+const { Engine } = require("./engine");
+let engine = new Engine();
+
 const FOLDER_ROOT = __dirname+"/..";
 const FOLDER_CLIENT = FOLDER_ROOT+"/client";
+const FOLDER_SERVER = FOLDER_ROOT+"/server";
 const FOLDER_DATA = FOLDER_ROOT+"/data";
 const FOLDER_RESOURCES = FOLDER_ROOT+"/resources";
 const VERSION = new Version("0.1.0");
@@ -31,10 +35,17 @@ function createWindow() {
         icon: FOLDER_RESOURCES+"/icon.png"
     });
     window.loadFile(FOLDER_CLIENT+"/index.html").then(() => {
-        
+        engine.start();
     });
+    if (configLoader.data.screen.maximized)
+        window.maximize();
     window.menuBarVisible = false;
 }
+
+app.on("window-all-closed", () => {
+    engine.stop();
+    app.quit();
+});
 
 ipcMain.on("quit", (evt, args) => {
     app.quit();
@@ -58,16 +69,10 @@ ipcMain.on("askForFiles", (ev, args) => {
     })
 });
 
-const engine = require("../build/Release/engine.node")
-ipcMain.on("checkDevices", (ev, args) => {
-    ev.returnValue = engine.checkDevices();
-})
-ipcMain.on("openAl", (ev, args) => {
-    ev.returnValue = engine.openAl();
-})
-ipcMain.on("setFreq", (ev, args) => {
-    ev.returnValue = engine.setFreq(args);
-})
-ipcMain.on("stop", (ev, args) => {
-    ev.returnValue = engine.stop();
-})
+ipcMain.on("getRootFolder", (ev, args) => {
+    ev.returnValue = FOLDER_ROOT;
+});
+
+setInterval(() => {
+    console.log(engine.getProcessor());
+}, 33);

@@ -1,3 +1,9 @@
+const FILE_CONST = {
+    AUDIO_FILE: 1,
+    PROJECT_FILE: 2,
+    PRESET_FILE: 3
+};
+
 class DiskElement {
     constructor(name, path) {
         /** @type {String} */
@@ -92,25 +98,37 @@ class FileElement extends DiskElement {
         switch (this.extension) {
             case "fynewav":
                 this.title.style.color = "var(--color-green-light)";
+                this.type = FILE_CONST.PROJECT_FILE;
                 break;
-            case "mp2":
-            case "mp3":
             case "wav":
             case "ogg":
             case "flac":
                 this.title.style.color = "var(--color-yellow-light)";
+                this.type = FILE_CONST.AUDIO_FILE;
                 break;
             case "fxp":
                 this.title.style.color = "var(--color-red-light)";
+                this.type = FILE_CONST.PRESET_FILE;
                 break;
         
             default:
                 break;
         }
+        this.title.onclick = () => {this.onclick();};
     }
     get extension() {
         let arr = this.name.split(".");
         return arr[arr.length-1];
+    }
+    onclick() {
+        switch (this.type) {
+            case FILE_CONST.AUDIO_FILE:
+                engine.playSound(this.path);
+                break;
+        
+            default:
+                break;
+        }
     }
 }
 
@@ -124,6 +142,10 @@ async function askForFiles(path) {
     return ipcRenderer.sendSync("askForFiles", path);
 }
 
-var fileExplorer = new FileExplorer("C://Users/FurWaz/Desktop");
+function getRootFolder() {
+    return ipcRenderer.sendSync("getRootFolder");
+}
+
+var fileExplorer = new FileExplorer(getRootFolder());
 fileExplorer.racine.toggleExpand();
 document.getElementById("file-explorer").appendChild(fileExplorer.racine.dom);

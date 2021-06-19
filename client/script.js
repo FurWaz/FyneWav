@@ -1,4 +1,3 @@
-const { ipcRenderer } = require("electron");
 const FILE_EXPAND_CURSOR = "file-expand";
 const ARRANGER_EXPAND_CURSOR = "arranger-expand";
 const RACKS_EXPAND_CURSOR = "racks-expand";
@@ -16,9 +15,8 @@ window.addEventListener("mousedown", ev => {
         expandZone = ARRANGER_EXPAND_CURSOR;
     if (ev.target.id == RACKS_EXPAND_CURSOR) 
         expandZone = RACKS_EXPAND_CURSOR;
-    if (dropMenu.showing && !dropMenu.hitbox(ev.x, ev.y) && !ev.target.classList.contains("dropmenu-btn")) {
+    if (dropMenu.showing && !dropMenu.hitbox(new Position(ev.x, ev.y))) {
         dropMenu.hide();
-        dropMenu.lastID = "";
     }
 });
 
@@ -53,29 +51,3 @@ window.addEventListener("mousemove", ev => {
 
 document.getElementById("content").style.maxHeight =
     "calc( 100% - "+document.getElementById("menubar").getBoundingClientRect().height+"px );";
-
-function quit() {
-    ipcRenderer.send("quit");
-}
-
-function reload() {
-    ipcRenderer.send("reload");
-}
-
-ipcRenderer.on("back", (ev, args) => {
-    console.log(args);
-});
-
-async function checkDevices() {
-    return await ipcRenderer.sendSync("checkDevices");
-}
-
-async function openAl() {
-    return await ipcRenderer.sendSync("openAl");
-}
-async function setFreq(nbr) {
-    return await ipcRenderer.sendSync("setFreq", nbr);
-}
-async function stop() {
-    return await ipcRenderer.sendSync("stop");
-}

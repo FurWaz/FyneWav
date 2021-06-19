@@ -1,5 +1,3 @@
-const { TouchBarSlider } = require("electron");
-
 class DropMenu {
     constructor() {
         this.dom = document.createElement("div");
@@ -34,25 +32,34 @@ class DropMenu {
         this.dom.style.maxHeight = "0px";
         this.showing = false;
         this.dom.style.opacity = "0";
+        this.lastID = "";
     }
     toggle(newID) {
         console.log(newID == this.lastID);
         console.log(newID +" | "+ this.lastID);
         if (newID == this.lastID) {
             this.hide();
-            this.lastID = "";
         } else {
             this.show(newID);
         }
     }
-    setPos(x, y) {
-        this.dom.style.left = x+"px";
-        this.dom.style.top = y+"px";
+    /**
+     * Move the dropBox at the new position
+     * @param {Position} p 
+     */
+    setPos(p) {
+        this.dom.style.left = p.x+"px";
+        this.dom.style.top = p.y+"px";
     }
-    hitbox(x, y) {
+    /**
+     * Returns if the position is in the bounds of the dropBOx
+     * @param {Position} p 
+     * @returns true if in the dropBox's bounds
+     */
+    hitbox(p) {
         this.dims = this.dom.getBoundingClientRect();
-        return x >= this.dims.x && x <= this.dims.x + this.dims.width &&
-               y >= this.dims.y && y <= this.dims.y + this.dims.height;
+        return p.x >= this.dims.x && p.x <= this.dims.x + this.dims.width &&
+               p.y >= this.dims.y && p.y <= this.dims.y + this.dims.height;
     }
 }
 
@@ -77,7 +84,7 @@ let aboutBtn = document.getElementById("about-btn");
 fileBtn.addEventListener("mousedown", ev => {
     dropMenu.clearOptions();
     let dims = fileBtn.getBoundingClientRect();
-    dropMenu.setPos(dims.x, dims.y+dims.height+4);
+    dropMenu.setPos(new Position(dims.x, dims.y+dims.height+4));
     dropMenu.addOption(new DropOption("New project", ()=>{console.log("New project")}));
     dropMenu.addOption(new DropOption("Open project", ()=>{console.log("Open project")}));
     dropMenu.addOption(new DropOption("Save project", ()=>{console.log("Save project")}));
@@ -88,7 +95,7 @@ fileBtn.addEventListener("mousedown", ev => {
 optionsBtn.addEventListener("mousedown", ev => {
     dropMenu.clearOptions();
     let dims = optionsBtn.getBoundingClientRect();
-    dropMenu.setPos(dims.x, dims.y+dims.height+4);
+    dropMenu.setPos(new Position(dims.x, dims.y+dims.height+4));
     dropMenu.addOption(new DropOption("General options", ()=>{console.log("General options")}));
     dropMenu.addOption(new DropOption("Audio options", ()=>{console.log("Audio options")}));
     dropMenu.addOption(new DropOption("Video options", ()=>{console.log("Video options")}));
@@ -98,7 +105,7 @@ optionsBtn.addEventListener("mousedown", ev => {
 aboutBtn.addEventListener("mousedown", ev => {
     dropMenu.clearOptions();
     let dims = aboutBtn.getBoundingClientRect();
-    dropMenu.setPos(dims.x, dims.y+dims.height+4);
+    dropMenu.setPos(new Position(dims.x, dims.y+dims.height+4));
     dropMenu.addOption(new DropOption("About FyneWav", ()=>{console.log("About FyneWav")}));
     dropMenu.addOption(new DropOption("Credits", ()=>{console.log("Credits")}));
     dropMenu.toggle(aboutBtn.id);

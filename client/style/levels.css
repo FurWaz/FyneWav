@@ -1,0 +1,19 @@
+div.lvl-container {
+    height: calc(100% - 4px);
+    margin: 2px 10px;
+    width: 16px;
+    border-radius: var(--border-radius);
+    background-color: var(--color-white-light);
+    overflow: hidden;
+}
+
+div.lvl-fill {
+    width: 100%;
+    height: 50%;
+    background-color: var(--color-black-dark);
+    transition: height 50ms var(--animation-type);
+}
+
+div#lvl-processor-container {
+    background-color: var(--color-red-light);
+}

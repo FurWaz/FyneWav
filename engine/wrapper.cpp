@@ -1,70 +1,47 @@
 #include <node.h>
-#include <AL/al.h>
-#include <AL/alc.h>
-#include "test.h"
+#include "engine.h"
 
-namespace fynewav
+void _getVolume(const v8::FunctionCallbackInfo<v8::Value> &args)
 {
-    using v8::Boolean;
-    using v8::FunctionCallbackInfo;
-    using v8::Isolate;
-    using v8::Local;
-    using v8::Number;
-    using v8::Object;
-    using v8::String;
-    using v8::Value;
+    v8::Isolate *isolate = args.GetIsolate();
+    args.GetReturnValue().Set(mainVolume);
+}
 
-    std::string function() {
-        ALCdevice *device;
-        device = alcOpenDevice(NULL);
-        if (!device)
-                return std::string("No devices found");
-        return std::string("Device found");
-    }
+void _getProcessor(const v8::FunctionCallbackInfo<v8::Value> &args)
+{
+    v8::Isolate *isolate = args.GetIsolate();
+    args.GetReturnValue().Set(mainProcessor);
+}
 
-    void DemoFunction(const FunctionCallbackInfo<Value> &args)
-    {
-        Isolate *isolate = args.GetIsolate();
-        auto total = Number::New(isolate, 3+5);
-        args.GetReturnValue().Set(total);
-    }
+void _playSound(const v8::FunctionCallbackInfo<v8::Value> &args)
+{
+    v8::Isolate *isolate = args.GetIsolate();
+    v8::String::Utf8Value str(isolate, args[0]);
+    std::string path(*str);
+    systemSound->loadSound(path);
+    args.GetReturnValue().Set(true);
+}
 
-    void uwu(const FunctionCallbackInfo<Value> &args)
-    {
-        Isolate* isolate = args.GetIsolate();
-        Local<String> output = String::NewFromUtf8(isolate, function().c_str()).ToLocalChecked();
-        args.GetReturnValue().Set(output);
-    }
+void _startEngine(const v8::FunctionCallbackInfo<v8::Value> &args)
+{
+    v8::Isolate *isolate = args.GetIsolate();
+    startEngine();
+    args.GetReturnValue().Set(true);
+}
 
-    void OpenAl(const FunctionCallbackInfo<Value> &args)
-    {
-        Isolate* isolate = args.GetIsolate();
-        main();
-        args.GetReturnValue().Set(true);
-    }
+void _stopEngine(const v8::FunctionCallbackInfo<v8::Value> &args)
+{
+    v8::Isolate *isolate = args.GetIsolate();
+    stopEngine();
+    args.GetReturnValue().Set(true);
+}
 
-    void SetFreq(const FunctionCallbackInfo<Value> &args)
-    {
-        Isolate* isolate = args.GetIsolate();
-        double d;
-        args[0]->NumberValue(isolate->GetCurrentContext()).To(&d);
-        freq = std::round(d);
-        args.GetReturnValue().Set(true);
-    }
-
-    void Stop(const FunctionCallbackInfo<Value> &args)
-    {
-        Isolate* isolate = args.GetIsolate();
-        stoppage();
-        args.GetReturnValue().Set(true);
-    }
-
-    void Initialize(Local<Object> exports)
-    {
-        NODE_SET_METHOD(exports, "checkDevices", uwu);
-        NODE_SET_METHOD(exports, "openAl", OpenAl);
-        NODE_SET_METHOD(exports, "setFreq", SetFreq);
-        NODE_SET_METHOD(exports, "stop", Stop);
-    }
-    NODE_MODULE(NODE_GYP_MODULE_NAME, Initialize);
-} // namespace fynewav
+void Initialize(v8::Local<v8::Object> exports)
+{
+    NODE_SET_METHOD(exports, "playSound", _playSound);
+    NODE_SET_METHOD(exports, "getVolume", _getVolume);
+    NODE_SET_METHOD(exports, "getProcessor", _getProcessor);
+    NODE_SET_METHOD(exports, "start", _startEngine);
+    NODE_SET_METHOD(exports, "stop", _stopEngine);
+}
+NODE_MODULE(NODE_GYP_MODULE_NAME, Initialize);

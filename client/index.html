@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>FyneWav</title>
+    <script src="./modules/utils.js" defer></script>
     <script src="./script.js" defer></script>
+    <script src="./modules/engine.js" defer></script>
     <script src="./modules/dropmenu.js" defer></script>
     <script src="./modules/fileExplorer.js" defer></script>
+    <script src="./modules/levels.js" defer></script>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./style/menubar.css">
     <link rel="stylesheet" href="./style/buttons.css">
     <link rel="stylesheet" href="./style/fileExplorer.css">
     <link rel="stylesheet" href="./style/dropmenu.css">
+    <link rel="stylesheet" href="./style/levels.css">
 </head>
 <body>
     <div class="nosize" id="nosize">
@@ -24,6 +28,12 @@
             <div class="align-y"> <button class="outline" id="options-btn">OPTIONS</button> </div>
             <span class="separator"></span>
             <div class="align-y"> <button class="outline" id="about-btn">ABOUT</button> </div>
+            <div id="lvl-volume-container" class="lvl-container">
+                <div id="lvl-volume-fill" class="lvl-fill"></div>
+            </div>
+            <div id="lvl-processor-container" class="lvl-container">
+                <div id="lvl-processor-fill" class="lvl-fill"></div>
+            </div>
         </div>
         <div id="content">
             <div id="file-explorer">

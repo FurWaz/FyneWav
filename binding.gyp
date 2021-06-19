@@ -4,7 +4,8 @@
             "target_name": "engine",
             "sources": [ "./engine/wrapper.cpp" ],
             "include_dirs": [
-                "<(module_root_dir)/engine/include/"
+                "<(module_root_dir)/engine/include/",
+                "<!@(node -p \"require('node-addon-api').include\")"
             ],
             'conditions': [
                 ['OS=="win"',
@@ -13,9 +14,13 @@
                     '__WINDOWS_MM__'
                     ],
                     'link_settings': {
-                    'libraries': [
-                        "-l<(module_root_dir)/engine/lib/OpenAL32.lib", "<(module_root_dir)/engine/lib/OpenAL32"
-                    ],
+                        'libraries': [
+                            "-lOpenAL32",
+                            "-lsndfile"
+                        ],
+                        'library_dirs': [
+                            "<(module_root_dir)/engine/lib/"
+                        ]
                     }
                 }
                 ],

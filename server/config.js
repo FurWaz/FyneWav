@@ -31,7 +31,8 @@ class Config {
         this.screen = {
             width: 1280,
             height: 720,
-            fullscreen: false
+            fullscreen: false,
+            maximize: false
         }
     }
 }
