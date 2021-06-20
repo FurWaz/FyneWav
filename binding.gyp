@@ -16,7 +16,8 @@
                     'link_settings': {
                         'libraries': [
                             "-lOpenAL32",
-                            "-lsndfile"
+                            "-lsndfile",
+                            "-lportmidi"
                         ],
                         'library_dirs': [
                             "<(module_root_dir)/engine/lib/"

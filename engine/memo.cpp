@@ -39,3 +39,8 @@ namespace fynewav
     }
     NODE_MODULE(NODE_GYP_MODULE_NAME, Initialize);
 } // namespace fynewav
+
+
+/*
+cmake .. -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreadedDLL -DBUILD_SHARED_LIBS:BOOL=ON; cmake --build .
+*/

@@ -1,4 +1,5 @@
 #include "render.h"
+#include "midi.h"
 
 // initialises OpenAL
 bool initOpenAL()
@@ -75,6 +76,7 @@ void emptyBuffer(ALuint buffer)
 void startEngine()
 {
     std::cout << "<=== starting audio engine ===>" << std::endl;
+
     initOpenAL();
 
     // setup audio source output
@@ -93,6 +95,8 @@ void startEngine()
     
     // starts the main rendering thread
     startRender();
+
+    portOpen(); // /!\ crash /!\ 
 }
 
 // stops the audio engine
@@ -109,4 +113,5 @@ void stopEngine()
 
     delete audioBuffers;
     shutdownOpenAL();
+    portClose(); // /!\ crash /!\ 
 }

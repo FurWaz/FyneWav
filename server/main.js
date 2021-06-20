@@ -72,7 +72,3 @@ ipcMain.on("askForFiles", (ev, args) => {
 ipcMain.on("getRootFolder", (ev, args) => {
     ev.returnValue = FOLDER_ROOT;
 });
-
-setInterval(() => {
-    console.log(engine.getProcessor());
-}, 33);
