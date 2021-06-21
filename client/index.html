@@ -9,25 +9,49 @@
     <script src="./modules/dropmenu.js" defer></script>
     <script src="./modules/fileExplorer.js" defer></script>
     <script src="./modules/levels.js" defer></script>
+    <script src="./modules/options.js" defer></script>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./style/menubar.css">
     <link rel="stylesheet" href="./style/buttons.css">
     <link rel="stylesheet" href="./style/fileExplorer.css">
     <link rel="stylesheet" href="./style/dropmenu.css">
     <link rel="stylesheet" href="./style/levels.css">
+    <link rel="stylesheet" href="./style/options.css">
 </head>
 <body>
     <div class="nosize" id="nosize">
+        <div id="dropmenu-container" class="nosize"></div>
+        <div id="optionspanel-container" class="screen-size align-y">
+            <div id="options-panel" class="popup-window align-x">
+                <button id="options-quit" class="outline-white">X</button>
+                <div class="options-selection">
+                    <div id="general-opts" class="option-type">
+                        <div class="align-y"> <p>General</p> </div>
+                    </div>
+                    <div id="audio-opts" class="option-type">
+                        <div class="align-y"> <p>Audio</p> </div>
+                    </div>
+                    <div id="video-opts" class="option-type">
+                        <div class="align-y"> <p>Video</p> </div>
+                    </div>
+                    <div id="file-opts" class="option-type">
+                        <div class="align-y"> <p>File</p> </div>
+                    </div>
+                </div>
+                <div id="options-content">
 
+                </div>
+            </div>
+        </div>
     </div>
     <div id="app">
         <div id="menubar">
             <img src="../resources/icon.svg" alt="icon" class="menu-icon">
-            <div class="align-y"> <button class="outline" id="file-btn">FILE</button> </div>
+            <div class="align-y"> <button class="outline" id="file-btn">File</button> </div>
             <span class="separator"></span>
-            <div class="align-y"> <button class="outline" id="options-btn">OPTIONS</button> </div>
+            <div class="align-y"> <button class="outline" id="options-btn">Options</button> </div>
             <span class="separator"></span>
-            <div class="align-y"> <button class="outline" id="about-btn">ABOUT</button> </div>
+            <div class="align-y"> <button class="outline" id="about-btn">About</button> </div>
             <div id="lvl-volume-container" class="lvl-container">
                 <div id="lvl-volume-fill" class="lvl-fill"></div>
             </div>

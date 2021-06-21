@@ -53,9 +53,9 @@
     --shadow: 0px 2px 4px #0003;
     --border-radius: 4px;
 
-    --animation-medium: 128ms;
-    --animation-slow: 512ms;
-    --animation-quick: 64ms;
+    --animation-medium: 150ms;
+    --animation-slow: 500ms;
+    --animation-quick: 60ms;
     --animation-type: ease;
 }
 
@@ -81,6 +81,22 @@ h2 {
     font-size: 20px;
     color: var(--color-white-light);
     font-family: "Roboto bold";
+}
+
+h3 {
+    font-size: 18px;
+    color: var(--color-white-light);
+    font-family: "Roboto thin";
+    text-align: left;
+    margin: 0px;
+    padding: 4px;
+}
+
+p {
+    font-size: 16px;
+    color: var(--color-white-light);
+    font-family: "Roboto regular";
+    margin: 2px 0px;
 }
 
 span.separator {
@@ -158,6 +174,17 @@ div.expand-h {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.screen-size {
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+}
+
+.align-x {
+    margin: auto;
+    text-align: center;
 }
 
 ::-webkit-scrollbar {

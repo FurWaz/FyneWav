@@ -96,7 +96,7 @@ void startEngine()
     // starts the main rendering thread
     startRender();
 
-    portOpen(); // /!\ crash /!\ 
+    //portOpen(); // /!\ crash /!\ 
 }
 
 // stops the audio engine
@@ -113,5 +113,5 @@ void stopEngine()
 
     delete audioBuffers;
     shutdownOpenAL();
-    portClose(); // /!\ crash /!\ 
+    //portClose(); // /!\ crash /!\ 
 }

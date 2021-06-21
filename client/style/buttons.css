@@ -34,6 +34,7 @@ button.outline {
 
 button.text {
     color: var(--color-primary-light);
+    box-shadow: none;
     background-color: transparent;
 } button.text:hover {
     
@@ -61,13 +62,13 @@ button.outline-black {color: var(--color-black-light); border-color: var(--color
 button.outline-white {color: var(--color-white-light); border-color: var(--color-white-light);}
 button.outline-grey {color: var(--color-grey-light); border-color: var(--color-grey-light);}
 
-button.text-red {color: var(--color-red-light);}
-button.text-green {color: var(--color-green-light);}
-button.text-blue {color: var(--color-blue-light);}
-button.text-purple {color: var(--color-purple-light);}
-button.text-orange {color: var(--color-orange-light);}
-button.text-yellow {color: var(--color-yellow-light);}
-button.text-cyan {color: var(--color-cyan-light);}
-button.text-black {color: var(--color-black-light);}
-button.text-white {color: var(--color-white-light);}
-button.text-grey {color: var(--color-grey-light);}
+button.text-red {box-shadow: none; color: var(--color-red-light);}
+button.text-green {box-shadow: none; color: var(--color-green-light);}
+button.text-blue {box-shadow: none; color: var(--color-blue-light);}
+button.text-purple {box-shadow: none; color: var(--color-purple-light);}
+button.text-orange {box-shadow: none; color: var(--color-orange-light);}
+button.text-yellow {box-shadow: none; color: var(--color-yellow-light);}
+button.text-cyan {box-shadow: none; color: var(--color-cyan-light);}
+button.text-black {box-shadow: none; color: var(--color-black-light);}
+button.text-white {box-shadow: none; color: var(--color-white-light);}
+button.text-grey {box-shadow: none; color: var(--color-grey-light);}

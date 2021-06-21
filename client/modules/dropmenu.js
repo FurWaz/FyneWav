@@ -35,8 +35,6 @@ class DropMenu {
         this.lastID = "";
     }
     toggle(newID) {
-        console.log(newID == this.lastID);
-        console.log(newID +" | "+ this.lastID);
         if (newID == this.lastID) {
             this.hide();
         } else {
@@ -75,7 +73,7 @@ class DropOption {
 }
 
 const dropMenu = new DropMenu();
-document.getElementById("nosize").appendChild(dropMenu.dom);
+document.getElementById("dropmenu-container").appendChild(dropMenu.dom);
 
 let fileBtn = document.getElementById("file-btn");
 let optionsBtn = document.getElementById("options-btn");
@@ -96,9 +94,10 @@ optionsBtn.addEventListener("mousedown", ev => {
     dropMenu.clearOptions();
     let dims = optionsBtn.getBoundingClientRect();
     dropMenu.setPos(new Position(dims.x, dims.y+dims.height+4));
-    dropMenu.addOption(new DropOption("General options", ()=>{console.log("General options")}));
-    dropMenu.addOption(new DropOption("Audio options", ()=>{console.log("Audio options")}));
-    dropMenu.addOption(new DropOption("Video options", ()=>{console.log("Video options")}));
+    dropMenu.addOption(new DropOption("General options", ()=>{options.open(OPTIONS.GENERAL); dropMenu.hide();}));
+    dropMenu.addOption(new DropOption("Audio options", ()=>{options.open(OPTIONS.AUDIO); dropMenu.hide();}));
+    dropMenu.addOption(new DropOption("Video options", ()=>{options.open(OPTIONS.VIDEO); dropMenu.hide();}));
+    dropMenu.addOption(new DropOption("File options", ()=>{options.open(OPTIONS.FILE); dropMenu.hide();}));
     dropMenu.toggle(optionsBtn.id);
 });
 

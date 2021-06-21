@@ -50,7 +50,7 @@
                     },
                     'link_settings': {
                     'libraries': [
-                        'OpenAL.framework',
+                        'OpenAL.framework'
                     ],
                     }
                 }

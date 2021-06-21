@@ -1,0 +1,115 @@
+.popup-window {
+    z-index: 10;
+    height: 90vh;
+    width: 90vw;
+    transform-origin: 50% 50%;
+    transform: scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    background-color: var(--color-background);
+    border-radius: var(--border-radius);
+    border: solid 1px var(--color-white-light);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--animation-quick) var(--animation-type),
+                opacity var(--animation-quick) var(--animation-type);
+}
+
+#optionspanel-container {
+    backdrop-filter: brightness(0.6);
+    opacity: 0;
+    transition: opacity var(--animation-medium) var(--animation-type),
+                backdrop-filter var(--animation-medium) var(--animation-type);
+}
+
+.options-selection {
+    background-color: var(--color-black-dark);
+    display: inline-flex;
+    justify-content: start;
+    width: 100%;
+    height: fit-content;
+}
+
+.option-type {
+    background-color: var(--color-black-dark);
+    padding: 10px 8px;
+    width: 10vw;
+    user-select: none;
+    transition: background-color var(--animation-quick) var(--animation-type);
+}
+
+#options-quit {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+#options-content {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: var(--color-black-light);
+}
+
+.listblock {
+    flex-grow: 2;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border-radius: var(--border-radius);
+    background-color: var(--color-black-dark);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.listelement {
+    display: inline-flex;
+    margin: 0px;
+    width: 100%;
+    height: min-content;
+    user-select: none;
+    white-space: nowrap;
+} .listelement:hover {
+    background-color: var(--color-black-light);
+}
+
+.separator-y {
+    width: 1px;
+    flex-grow: 0 1;
+    background-color: var(--color-white-dark);
+}
+
+.separator-x {
+    flex-grow: 1 0;
+    height: 1px;
+    background-color: var(--color-white-dark);
+}
+
+.arranger-x {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    flex-grow: 0 1;
+    justify-content: space-evenly;
+}
+
+.arranger-y {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 0px 10px;
+    flex-grow: 1 0;
+}
+
+.spread-x {
+    width: 100%;
+    flex-grow: 1 0;
+}
+.spread-y {
+    width: 100%;
+    flex-grow: 0 1;
+}
