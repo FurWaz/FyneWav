@@ -1,3 +1,4 @@
+const { ipcMain } = require("electron");
 const fs = require("fs");
 
 class ConfigLoader {
@@ -9,7 +10,20 @@ class ConfigLoader {
         /**@type {Boolean} */
         this.loaded = false;
     }
+    setup() {
+        ipcMain.on("getConfigFile", (ev, args) => {
+            ev.returnValue = this.data;
+        });
+
+        ipcMain.on("setConfigFile", (ev, args) => {
+            this.data.ui = args.ui;
+            this.data.folders = args.folders;
+            this.save();
+        });
+    }
+
     load() {
+        this.setup();
         fs.readFile(this.path, (err, data) => {
             if (err) {
                 console.log("ERROR: Error loading file at "+this.path);
@@ -20,6 +34,11 @@ class ConfigLoader {
             }
         })
     }
+
+    save() {
+        fs.writeFile(this.path, JSON.stringify(this.data, null, 4), ()=>{});
+    }
+
     onload() {
 
     }
@@ -33,6 +52,15 @@ class Config {
             height: 720,
             fullscreen: false,
             maximize: false
+        },
+        this.ui = {
+            explorerSize: 15,
+            arrangerSize: 15,
+            rackSize: 15
+        }
+        this.folders = {
+            kit: [],
+            vst: []
         }
     }
 }
@@ -45,11 +73,23 @@ class Version {
      * Version constructor
      * @param {String} str the stringified version number
      */
-     constructor(str) {
-        let tab = str.split(".");
-        this.major = tab[0];
-        this.middle = tab[1];
-        this.minor = tab[2];
+    constructor(str) {
+        if (typeof str == String) {
+            let tab = str.split(".");
+            this.major = tab[0];
+            this.middle = tab[1];
+            this.minor = tab[2];
+        } else {
+            try {
+                this.major = str.major;
+                this.middle = str.middle;
+                this.minor = str.minor;
+            } catch {
+                this.major = 0;
+                this.middle = 0;
+                this.minor = 0;
+            }
+        }
     }
 
     /**

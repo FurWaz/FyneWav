@@ -100,6 +100,7 @@ public:
         for (int i = 0; i < nbVsts; i++)
         {
             ALshort* samples = (ALshort*) malloc( sizeof(ALshort) * FNV::BUFFER_SIZE );
+            for (int i = 0; i < FNV::BUFFER_SIZE; i++) samples[i] = 0;
             vsts[i]->render(samples);
             for (int j = 0; j < FNV::BUFFER_SIZE; j++)
                 buffer[j] += samples[j];

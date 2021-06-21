@@ -104,12 +104,3 @@
     margin: 0px 10px;
     flex-grow: 1 0;
 }
-
-.spread-x {
-    width: 100%;
-    flex-grow: 1 0;
-}
-.spread-y {
-    width: 100%;
-    flex-grow: 0 1;
-}

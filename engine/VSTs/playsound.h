@@ -93,7 +93,7 @@ public:
     {
         for (int i = 0; i < FNV::BUFFER_SIZE; i++)
         {
-            if (this->readingIndex >= this->length) buffer[i] = 0;
+            if (this->readingIndex >= this->length) return;
             else buffer[i] = this->data[this->readingIndex++];
         }
     }

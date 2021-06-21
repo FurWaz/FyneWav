@@ -11,6 +11,8 @@ class DiskElement {
         /** @type {String} */
         this.path = path;
 
+        if (this.name == null) this.name = new FolderElement("", this.path).folderName;
+
         this.dom = document.createElement("div");
         this.title = document.createElement("p");
         this.dom.classList.add("diskElement");
@@ -77,6 +79,14 @@ class FolderElement extends DiskElement {
         return files;
     }
 
+    get folderName() {
+        let tab = this.path.split("/");
+        tab = tab[tab.length-1].split("\\")
+        if (tab[tab.length-1] == "")
+            return tab[tab.length-2];
+        else return tab[tab.length-1];
+    }
+
     updateHeight() {
         this.container.style.maxHeight = this.nbrFiles*this.title.getBoundingClientRect().height+"px";
         if (this.parent != null)
@@ -96,7 +106,7 @@ class FileElement extends DiskElement {
         super(name, path);
         this.title.classList.add("file");
         switch (this.extension) {
-            case "fynewav":
+            case "fyn":
                 this.title.style.color = "var(--color-green-light)";
                 this.type = FILE_CONST.PROJECT_FILE;
                 break;
@@ -134,7 +144,7 @@ class FileElement extends DiskElement {
 
 class FileExplorer{
     constructor(path) {
-        this.racine = new FolderElement("Root", path);
+        this.racine = new FolderElement(null, path);
     }
 }
 
@@ -146,6 +156,14 @@ function getRootFolder() {
     return ipcRenderer.sendSync("getRootFolder");
 }
 
-var fileExplorer = new FileExplorer(getRootFolder());
-fileExplorer.racine.toggleExpand();
-document.getElementById("file-explorer").appendChild(fileExplorer.racine.dom);
+const FE = document.getElementById("file-explorer");
+function generateExplorers() {
+    clearDiv(FE);
+    config.data.folders.kit.forEach(k => {
+        let fileExplorer = new FileExplorer(k);
+        console.log(fileExplorer);
+        fileExplorer.racine.toggleExpand();
+        FE.appendChild(fileExplorer.racine.dom);
+    });
+}
+generateExplorers();

@@ -91,25 +91,50 @@ class Options {
                 addXSeparator(r);
         let kitList = addListBlock(l);
         let vstList = addListBlock(r);
-        let kitElements = ["C://Users/FurWaz/Documents/Kits/", "C://Windows/Program Files/FyneWav/Kits"];
-        let vstElements = ["C://Users/FurWaz/Documents/Vsts/", "C://Windows/Program Files/FyneWav/VSTs", "C://Users/FurWaz/Desktop"];
-        let index = 0;
-        kitElements.forEach(el => {
-            addRemovableListElement(kitList, el, index++, kitElements);
-        });
-        index = 0;
-        vstElements.forEach(el => {
-            addRemovableListElement(vstList, el, index++, vstElements);
-        });
+
+        let kitDuplicate = [];
+        let vstDuplicate = [];
+
+        function populateKit() {
+            let index = 0;
+            addPlusListElement(kitList, ()=> {
+                kitDuplicate.push("New element");
+                addRemovableListElement(kitList, "New element", kitDuplicate.length-1, kitDuplicate);
+            });
+            config.data.folders.kit.forEach(el => {
+                kitDuplicate.push(el);
+                addRemovableListElement(kitList, el, index++, kitDuplicate);
+            });
+        } populateKit();
+        
+        function populateVst() {
+            let index = 0;
+            addPlusListElement(vstList, ()=> {
+                vstDuplicate.push("New element");
+                addRemovableListElement(vstList, "New element", vstDuplicate.length-1, vstDuplicate);
+            });
+            config.data.folders.vst.forEach(el => {
+                vstDuplicate.push(el);
+                addRemovableListElement(vstList, el, index++, vstDuplicate);
+            });
+        } populateVst();
+
+        function applyKit() {
+            config.data.folders.kit = [];
+            kitDuplicate.forEach(k => {if (k != null) config.data.folders.kit.push(k);});
+        }
+        function applyVst() {
+            config.data.folders.vst = [];
+            vstDuplicate.forEach(v => {if (v != null) config.data.folders.vst.push(v);});
+        }
 
         let rbtn_a = addXArranger(r);
         let lbtn_a = addXArranger(l);
-        addButton(rbtn_a, "Reset", ()=>{console.log("reset")}, "outline");
-        addButton(rbtn_a, "Save", ()=>{console.log("save")}, "contain");
-        addButton(lbtn_a, "Reset", ()=>{console.log("reset")}, "outline");
-        addButton(lbtn_a, "Save", ()=>{console.log("save")}, "contain");
+        addButton(rbtn_a, "Reset", ()=>{clearDiv(vstList); vstDuplicate = []; populateVst()}, "outline");
+        addButton(rbtn_a, "Save", ()=>{applyVst(); config.saveConfig();}, "contain");
+        addButton(lbtn_a, "Reset", ()=>{clearDiv(kitList); kitDuplicate = []; populateKit()}, "outline");
+        addButton(lbtn_a, "Save", ()=>{applyKit(); config.saveConfig();}, "contain");
     }
 }
 
 let options = new Options();
-options.open(OPTIONS.FILE);

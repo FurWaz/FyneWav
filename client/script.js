@@ -21,6 +21,7 @@ window.addEventListener("mousedown", ev => {
 });
 
 window.addEventListener("mouseup", ev => {
+    if (expandZone != null) config.saveConfig();
     expandZone = null;
 });
 
@@ -51,3 +52,7 @@ window.addEventListener("mousemove", ev => {
 
 document.getElementById("content").style.maxHeight =
     "calc( 100% - "+document.getElementById("menubar").getBoundingClientRect().height+"px );";
+
+window.addEventListener("resize", ev => {
+    console.log(window.innerWidth+", "+window.innerHeight);
+});

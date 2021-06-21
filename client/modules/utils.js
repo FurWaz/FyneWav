@@ -88,34 +88,60 @@ function addListElement(container, text, style) {
             el.classList.add(s);
         });
     }
-    container.appendChild(el);
+    container.insertBefore(el, container.firstChild);
     return el;
 }
 
 function addRemovableListElement(container, text, index, list, style) {
-    let el = document.createElement("p");
+    let el = document.createElement("input");
     let dv = document.createElement("div");
     let dv2 = document.createElement("div");
     let cont = document.createElement("div");
+    console.log("list", list);
     cont.classList.add("listelement");
     dv.classList.add("align-y");
     dv2.classList.add("align-y");
-    el.innerHTML = text;
+    el.value = text;
     if (style) {
         style.split(" ").forEach(s => {
             cont.classList.add(s);
         });
     }
+    el.onkeyup = () => {
+        list[index] = el.value;
+    };
     dv.appendChild(el);
-    cont.appendChild(dv);
-    container.appendChild(cont);
-    addDiv(cont, "spread-x");
+    let dv3 = addDiv(cont, "spread-x");
+    dv3.appendChild(dv);
+    cont.appendChild(dv3);
+    container.insertBefore(cont, container.firstChild);
     addButton(dv2, "X", ()=>{
-        list.splice(index, 1);
+        list[index] = null;
         cont.remove();
     }, "text-red");
     cont.appendChild(dv2);
-    return el;
+    return cont;
+}
+
+function addPlusListElement(container, callback, style) {
+    let cont = document.createElement("div");
+    let dv = document.createElement("div");
+    let btn = document.createElement("button");
+    cont.classList.add("listelement");
+    cont.style.cursor = "pointer";
+    dv.classList.add("align-x");
+    btn.classList.add("text-green");
+    btn.innerHTML = "+";
+    if (style) {
+        style.split(" ").forEach(s => {
+            cont.classList.add(s);
+        });
+    }
+    cont.onclick = callback;
+    dv.appendChild(btn);
+    cont.appendChild(dv);
+    container.insertBefore(cont, container.firstChild);
+    return cont;
 }
 
 function addDiv(container, style) {
@@ -155,4 +181,9 @@ function addXArranger(container, style) {
     s.classList.add('arranger-x');
     container.appendChild(s);
     return s;
+}
+
+function clearDiv(container) {
+    while(container.firstChild)
+        container.firstChild.remove();
 }

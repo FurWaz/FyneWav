@@ -56,8 +56,10 @@ ipcMain.on("reload", (evt, args) => {
 
 ipcMain.on("askForFiles", (ev, args) => {
     fs.readdir(args, {}, (err, files) => {
-        if (err)
-        console.log("ERROR: Error listing files at "+args);
+        if (err) {
+            console.log("ERROR: Error listing files at "+args);
+            ev.returnValue = [];
+        }
         else {
             let result = [];
             files.forEach(f => {
