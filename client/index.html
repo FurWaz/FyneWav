@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <title>FyneWav</title>
     <script src="./modules/utils.js" defer></script>
+    <script src="./modules/cursor.js" defer></script>
     <script src="./script.js" defer></script>
     <script src="./modules/engine.js" defer></script>
-    <script src="./modules/config.js" defer></script>
     <script src="./modules/dropmenu.js" defer></script>
     <script src="./modules/fileExplorer.js" defer></script>
+    <script src="./modules/arranger.js" defer></script>
     <script src="./modules/levels.js" defer></script>
     <script src="./modules/options.js" defer></script>
+    <script src="./modules/config.js" defer></script>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./style/menubar.css">
     <link rel="stylesheet" href="./style/buttons.css">
@@ -18,9 +20,14 @@
     <link rel="stylesheet" href="./style/dropmenu.css">
     <link rel="stylesheet" href="./style/levels.css">
     <link rel="stylesheet" href="./style/options.css">
+    <link rel="stylesheet" href="./style/cursor.css">
+    <link rel="stylesheet" href="./style/arranger.css">
 </head>
 <body>
     <div class="nosize" id="nosize">
+        <div id="cursor-obj-container" class="nosize">
+            <div id="cursor-obj-content"></div>
+        </div>
         <div id="dropmenu-container" class="nosize"></div>
         <div id="optionspanel-container" class="screen-size align-y">
             <div id="options-panel" class="popup-window align-x">
@@ -61,21 +68,22 @@
             </div>
         </div>
         <div id="content">
-            <div id="file-explorer">
+            <div id="file-explorer-container">
                 
             </div>
             <div id="file-expand" class="expand-v"></div>
             <div id="creation-zone">
-                <div id="arranger">
-
+                <div id="arranger-container">
+                    <div id="arranger-headers"></div>
+                    <div id="arranger-contents"></div>
                 </div>
                 <div id="arranger-expand" class="expand-h"></div>
                 <div id="tweak-zone">
-                    <div id="racks">
+                    <div id="racks-container">
                         
                     </div>
                     <div id="racks-expand" class="expand-v"></div>
-                    <div id="channels">
+                    <div id="channels-container">
 
                     </div>
                 </div>

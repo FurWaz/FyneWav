@@ -5,15 +5,15 @@
         "minor": 0
     },
     "screen": {
-        "width": 1280,
-        "height": 720,
+        "width": 1600,
+        "height": 900,
         "fullscreen": false,
         "maximize": false
     },
     "ui": {
-        "explorerSize": 15.9019,
-        "arrangerSize": 71.5409,
-        "rackSize": 22.3796
+        "explorerSize": 16.5404,
+        "arrangerSize": 66.299,
+        "rackSize": 33.0889
     },
     "folders": {
         "kit": [

@@ -1,0 +1,22 @@
+@keyframes disappear {
+    0% {opacity: 1; transform: scale(1);}
+    100% {opacity: 0; transform: scale(0.8);}
+}
+
+div#cursor-obj-content {
+    width: fit-content;
+    height: fit-content;
+    transform-origin: 50% 50%;
+    transform: rotate(0deg);
+    position: fixed;
+    user-select: none;
+    pointer-events: none;
+    transition: transform 78ms var(--animation-type),
+                top 78ms var(--animation-type),
+                left 78ms var(--animation-type),
+                opacity 78ms var(--animation-type);
+}
+
+.disappear {
+    animation: disappear 100ms var(--animation-type) forwards;
+}

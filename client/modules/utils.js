@@ -5,8 +5,8 @@ class Position {
      * @param {Number} y The Y coordonate of the Position
      */
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        this.x = (x == null)? 0: x;
+        this.y = (y == null)? 0: y;
     }
     /**
      * Returns the absolute distance between [this] and [p]
@@ -15,6 +15,22 @@ class Position {
      */
     dist(p) {
         return Math.sqrt( Math.pow(this.x-p.x, 2) + Math.pow(this.y-p.y, 2) );
+    }
+    /**
+     * Returns the result of [this] - [p]
+     * @param {Position} p The target Position
+     * @returns {Number} The result of [this] - [p]
+     */
+    minus(p) {
+        return new Position( this.x - p.x, this.y - p.y );
+    }
+    /**
+     * Returns the result of [this] + [p]
+     * @param {Position} p The target Position
+     * @returns {Number} The result of [this] + [p]
+     */
+    plus(p) {
+        return new Position( this.x + p.x, this.y + p.y );
     }
 }
 

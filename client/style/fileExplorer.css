@@ -1,4 +1,4 @@
-div#file-explorer {
+div#file-explorer-container {
     width: 15%;
     margin: 0px; padding: 0px;
     background-color: var(--color-background);

@@ -11,7 +11,8 @@ class DiskElement {
         /** @type {String} */
         this.path = path;
 
-        if (this.name == null) this.name = new FolderElement("", this.path).folderName;
+        if (this.name == null)
+            this.name = this.nameFromPath(this.path);
 
         this.dom = document.createElement("div");
         this.title = document.createElement("p");
@@ -21,8 +22,20 @@ class DiskElement {
         this.dom.appendChild(this.title);
     }
 
+    nameFromPath(path) {
+        let tab = path.split("/");
+        tab = tab[tab.length-1].split("\\")
+        if (tab[tab.length-1] == "")
+            return tab[tab.length-2];
+        else return tab[tab.length-1];
+    }
+
     get nbrFiles() {
         return 1;
+    }
+
+    findFile(fileDiv) {
+        return (this.title == fileDiv)? this: null;
     }
 }
 
@@ -51,6 +64,9 @@ class FolderElement extends DiskElement {
         if (this.expanded) {
             this.container.style.maxHeight = "0px";
             this.container.style.opacity = "0";
+            setTimeout(() => {
+                clearDiv(this.container);
+            }, 200);
         } else {
             this.container.style.opacity = "1";
             if (!this.filesLoaded) {
@@ -61,11 +77,11 @@ class FolderElement extends DiskElement {
                     else
                     this.addElement(new FileElement(f.name, this.path+"/"+f.name));
                 });
-                this.files.forEach(f => {
-                    this.container.appendChild(f.dom);
-                })
                 this.filesLoaded = true;
             }
+            this.files.forEach(f => {
+                this.container.appendChild(f.dom);
+            })
             this.updateHeight();
         }
         this.expanded = !this.expanded;
@@ -91,6 +107,14 @@ class FolderElement extends DiskElement {
         this.container.style.maxHeight = this.nbrFiles*this.title.getBoundingClientRect().height+"px";
         if (this.parent != null)
             this.parent.updateHeight();
+    }
+
+    findFile(fileDiv) {
+        for (let i = 0; i < this.files.length; i++) {
+            let res = this.files[i].findFile(fileDiv);
+            if (res != null) return res;
+        }
+        return null;
     }
 
     async refresh() {
@@ -126,10 +150,12 @@ class FileElement extends DiskElement {
         }
         this.title.onclick = () => {this.onclick();};
     }
+
     get extension() {
         let arr = this.name.split(".");
         return arr[arr.length-1];
     }
+
     onclick() {
         switch (this.type) {
             case FILE_CONST.AUDIO_FILE:
@@ -143,8 +169,32 @@ class FileElement extends DiskElement {
 }
 
 class FileExplorer{
-    constructor(path) {
-        this.racine = new FolderElement(null, path);
+    constructor() {
+        this.dom = document.getElementById("file-explorer-container");
+        this.roots = [];
+        setTimeout(() => {
+            this.generateExplorers();
+        }, 10);
+    }
+    
+    generateExplorers() {
+        clearDiv(this.dom);
+        config.data.folders.kit.forEach(k => {
+            let root = new FolderElement(null, k);
+            this.roots.push(root);
+            this.dom.appendChild(root.dom);
+        });
+    }
+
+    /**
+     * @param {HTMLDivElement} fileDiv 
+     */
+    findFile(fileDiv) {
+        for (let i = 0; i < this.roots.length; i++) {
+            let res = this.roots[i].findFile(fileDiv);
+            if (res != null) return res;
+        }
+        return null;
     }
 }
 
@@ -156,14 +206,4 @@ function getRootFolder() {
     return ipcRenderer.sendSync("getRootFolder");
 }
 
-const FE = document.getElementById("file-explorer");
-function generateExplorers() {
-    clearDiv(FE);
-    config.data.folders.kit.forEach(k => {
-        let fileExplorer = new FileExplorer(k);
-        console.log(fileExplorer);
-        fileExplorer.racine.toggleExpand();
-        FE.appendChild(fileExplorer.racine.dom);
-    });
-}
-generateExplorers();
+let fileExplorer = new FileExplorer();
