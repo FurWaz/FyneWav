@@ -1,5 +1,5 @@
-node_modules/
-bin/
-build/
+/node_modules/
+/bin/
+/build/
 .vscode/
 /include/
