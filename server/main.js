@@ -74,3 +74,8 @@ ipcMain.on("askForFiles", (ev, args) => {
 ipcMain.on("getRootFolder", (ev, args) => {
     ev.returnValue = FOLDER_ROOT;
 });
+
+ipcMain.on("toggleDevMode", (ev, args) => {
+    window.webContents.isDevToolsOpened()?
+        window.webContents.closeDevTools(): window.webContents.openDevTools();
+});

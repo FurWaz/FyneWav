@@ -107,5 +107,6 @@ aboutBtn.addEventListener("mousedown", ev => {
     dropMenu.setPos(new Position(dims.x, dims.y+dims.height+4));
     dropMenu.addOption(new DropOption("About FyneWav", ()=>{console.log("About FyneWav")}));
     dropMenu.addOption(new DropOption("Credits", ()=>{console.log("Credits")}));
+    dropMenu.addOption(new DropOption("Toggle developer tools", ()=>{ipcRenderer.send("toggleDevMode");}));
     dropMenu.toggle(aboutBtn.id);
 });

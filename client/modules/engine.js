@@ -2,7 +2,9 @@ const { ipcRenderer } = require("electron");
 
 class Engine {
     constructor() {
-        
+        let error = ipcRenderer.sendSync("engine.error.getState()");
+        if (error.err == "") return;
+        openErrorPopup(error.msg, error.err);
     }
     playSound(path) {
         ipcRenderer.send("engine.event.playsound", {path: path});

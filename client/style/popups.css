@@ -1,0 +1,36 @@
+div.popup-englobe {
+    backdrop-filter: brightness(0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px; left: 0px;
+}
+
+div.popup-div {
+    padding: 30px;
+    width: 50%;
+    height: fit-content;
+    background-color: var(--color-black-light);
+    border-radius: var(--border-radius);
+    border: solid 2px var(--color-black-dark);
+    box-shadow: var(--back-shadow);
+}
+
+h3.popup-message {
+    text-align: center;
+}
+
+p.popup-error {
+    padding: 30px 40px;
+    text-align: left;
+    flex-grow: 1;
+}
+
+div.popup-buttons {
+    height: fit-content;
+    width: 100%;
+}
+
+button.popup-btn {
+    text-align: right;
+}

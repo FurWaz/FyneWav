@@ -51,6 +51,7 @@
     --color-foreground: var(--color-white-light);
 
     --shadow: 0px 2px 4px #0003;
+    --back-shadow: 0px 5px 20px #0003;
     --border-radius: 4px;
 
     --animation-medium: 150ms;
@@ -205,4 +206,17 @@ div.expand-h {
 .spread-y {
     width: 100%;
     flex-grow: 0 1;
+}
+
+.dark-box {
+    margin: 4px;
+    border-radius: var(--border-radius);
+    background-color: var(--color-black-dark);
+    width: fit-content;
+}
+
+.link {
+    text-decoration: underline 1px var(--color-blue-light);
+    color: var(--color-blue-light);
+    cursor: pointer;
 }

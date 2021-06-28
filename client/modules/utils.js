@@ -34,6 +34,10 @@ class Position {
     }
 }
 
+function clamp(val, min, max) {
+    return Math.min(max, Math.max(min, val))
+}
+
 function addButton(container, text, callback, style) {
     let btn = document.createElement("button");
     if (style) {

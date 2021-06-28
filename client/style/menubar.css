@@ -11,3 +11,7 @@ img.menu-icon {
     height: 40px;
     padding-right: 12px; margin: 0px;
 }
+
+div#menu-bpm-container {
+    flex-grow: 1 0;
+}
