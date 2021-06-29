@@ -72,6 +72,7 @@ body {
     max-height: 100vh;
     margin: 0px;
     padding: 0px;
+    user-select: none;
 }
 
 ::-webkit-scrollbar {

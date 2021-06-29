@@ -77,6 +77,7 @@ document.getElementById("dropmenu-container").appendChild(dropMenu.dom);
 
 let fileBtn = document.getElementById("file-btn");
 let optionsBtn = document.getElementById("options-btn");
+let extensionsBtn = document.getElementById("extensions-btn");
 let aboutBtn = document.getElementById("about-btn");
 
 fileBtn.addEventListener("mousedown", ev => {
@@ -99,6 +100,15 @@ optionsBtn.addEventListener("mousedown", ev => {
     dropMenu.addOption(new DropOption("Video options", ()=>{options.open(OPTIONS.VIDEO); dropMenu.hide();}));
     dropMenu.addOption(new DropOption("File options", ()=>{options.open(OPTIONS.FILE); dropMenu.hide();}));
     dropMenu.toggle(optionsBtn.id);
+});
+
+extensionsBtn.addEventListener("mousedown", ev => {
+    dropMenu.clearOptions();
+    let dims = extensionsBtn.getBoundingClientRect();
+    dropMenu.setPos(new Position(dims.x, dims.y+dims.height+4));
+    dropMenu.addOption(new DropOption("My extensions", ()=>{console.log("Extensions library")}));
+    dropMenu.addOption(new DropOption("Store", ()=>{console.log("Extensions store")}));
+    dropMenu.toggle(extensionsBtn.id);
 });
 
 aboutBtn.addEventListener("mousedown", ev => {

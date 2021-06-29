@@ -67,7 +67,7 @@ div.track-content {
     margin-bottom: 2px;
     width: 200%;
     height: var(--arranger-track-height);
-    background: var(--color-black-light);
+    background: linear-gradient(90deg, blue, red);
     border-radius: var(--border-radius);
 }
 

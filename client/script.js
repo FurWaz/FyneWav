@@ -78,10 +78,7 @@ window.addEventListener("mousemove", ev => {
         switch (cursorZone) {
             case ARRANGER_CURSOR:
             case ARRANGER_BAR:
-                let cursorSize = 15;
-                let r_size = document.getElementById("arranger-bar").getBoundingClientRect();
-                let r_percent = (ev.x - r_size.x - cursorSize/2)*100 / r_size.width;
-                document.getElementById(ARRANGER_CURSOR).style.marginLeft = r_percent+"%";
+                arranger.moveCursor(ev);
                 break;
             default:
                 break;
