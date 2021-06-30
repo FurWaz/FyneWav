@@ -17,5 +17,20 @@ class ArrangerTrack {
         trackContents.appendChild(this.content);
 
         this.id = _arranger_id_counter++;
+
+        this.patterns = []
+    }
+    
+    addPattern(pos, width) {
+        this.patterns.push( new Pattern(pos, width) );
+    }
+
+    isPosAvailable(pos) {
+        for (let i = 0; i < this.patterns.length; i++) {
+            const el = this.patterns[i];
+            if (el.pos <= pos && el.pos + el.width >= pos)
+                return false;
+        }
+        return true;
     }
 }

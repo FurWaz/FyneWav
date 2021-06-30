@@ -21,6 +21,13 @@ class Engine {
     stop() {
         ipcRenderer.send("engine.stop");
     }
+
+    playNote(instrumentID, NoteID) {
+        
+    }
+    stopNote(instrumentID, NoteID) {
+        
+    }
 }
 
 function quit() {
