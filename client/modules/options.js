@@ -122,6 +122,7 @@ class Options {
         function applyKit() {
             config.data.folders.kit = [];
             kitDuplicate.forEach(k => {if (k != null) config.data.folders.kit.push(k);});
+            fileExplorer.reload();
         }
         function applyVst() {
             config.data.folders.vst = [];

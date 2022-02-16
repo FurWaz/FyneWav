@@ -176,6 +176,11 @@ class FileExplorer{
             this.generateExplorers();
         }, 10);
     }
+
+    reload() {
+        this.roots = [];
+        this.generateExplorers();
+    }
     
     generateExplorers() {
         clearDiv(this.dom);
